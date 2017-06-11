@@ -1,0 +1,26 @@
+{% extends "onlinetest/header.html" %} {% block content %}
+<br>
+<br>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <center>
+                <h3>Client Sign IN</h3>
+            </center><br>
+            <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:clientloginval' %}">
+                {% csrf_token %}
+                <center>
+                    <input type="text" class="form-control input-lg" name="email" placeholder="Email" required>
+                    <br>
+                    <input type="password" class="form-control input-lg" name="pwd" placeholder="Password" required>
+                </center>
+                <br>
+                <button class="abcbut" type="submit">Login</button>
+                <center>or
+                    <a href="/clientregister" class="abcbut">Signup</a></center>
+            </form>
+        </div>
+    </div>
+</div>
+<br>{% endblock %}

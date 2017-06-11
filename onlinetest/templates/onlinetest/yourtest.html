@@ -1,0 +1,241 @@
+<!doctype html> {% load static %}
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>
+    </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600italic,700,800'
+          rel='stylesheet'
+          type='text/css'>
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+    <link href='https://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'onlinetest/css/style1.css' %}" type="text/css"/>
+    <link rel="stylesheet" href="{% static 'onlinetest/css/imagehover.min.css' %}" type="text/css"/>
+
+    <script>
+        function startTimer(duration, display) {
+            var timer = duration, minutes, seconds;
+            setInterval(function () {
+                minutes = parseInt(timer / 60, 10);
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                display.textContent = minutes + ":" + seconds;
+                if (--timer < 0) {
+                    timer = duration;
+                }
+            }, 1000);
+        }
+
+        window.onload = function () {
+            var onehour = 60 * 60,
+                    display = document.querySelector('#time');
+            startTimer(onehour, display);
+        };
+        //   document.onkeydown = function (e) {
+        //         e.preventDefault();
+        //     }
+        //     document.onkeydown = function (e) {
+        //         e = e || window.event;//Get event
+        //         if (e.ctrlKey) {
+        //             var c = e.which || e.keyCode;//Get key code
+        //             switch (c) {
+        //                 case 83://Block Ctrl+S
+        //                 case 87://Block Ctrl+W --Not work in Chrome
+        //                     e.preventDefault();
+        //                     e.stopPropagation();
+        //                     break;
+        //             }
+        //         }
+        //     };
+        //     window.onbeforeunload = function () {//Prevent Ctrl+W
+        //         return "Really want to quit the game?";
+        //     };
+    </script>
+</head>
+<body>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <button type="button" class="btn btn-default">Welcome Admin</button>
+        </div>
+        <div class="col-md-4">
+            <form method="POST" id="formid" action="{% url 'onlinetest:paper_submit' %}">
+                {% csrf_token %}
+                <input type="button" onclick="submit()" class="btn btn-success" value="Submit Test">
+                <input type="text" value="{{ marks }}" name="kks" hidden>
+
+            </form>
+        </div>
+        <div class="col-md-4">
+            <b>
+                <div id="time" class="btn btn-default"></div>
+            </b>
+        </div>
+    </div>
+</div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-9">
+            <form method="POST" id="formid" action="{% url 'onlinetest:yourtest' %}">
+                {% csrf_token %}
+                <div class="container">
+                    <button type="button" class="btn btn-primary">Question 1</button>
+                    <br>
+                    <br>
+                    <b>  {{ question.question }}             </b>
+                    <div class="col-sm-12">
+                        {% if question.option1 != "na" %}
+
+                            <div class="checkbox">
+                                <label>
+                                    <input type="radio" name="option" value="1" checked>
+                                    {{ question.option1 }} <input type="text" value="{{ question.option1 }}" name="1"
+                                                                  hidden>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="radio" name="option" value="2">
+                                    {{ question.option2 }} <input type="text" value="{{ question.option2 }}" name="2"
+                                                                  hidden>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="radio" name="option" value="3">
+                                    {{ question.option3 }} <input type="text" value="{{ question.option3 }}" name="3"
+                                                                  hidden>
+                                </label>
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="radio" name="option" value="4">
+                                    {{ question.option4 }} <input type="text" value="{{ question.option4 }}" name="4"
+                                                                  hidden>
+                                </label>
+                            </div>
+                            </div>
+                        {% else %}
+                            <input type="text" value="{{ question.answer }}" name="answer">
+
+                        {% endif %}
+                    <br><br><br>
+                    <br>
+                    <div>
+                        <input type="text" value="{{ question.answer }}" name="answer" hidden>
+                        <input type="text" value="0" name="marks" hidden>
+                    </div>
+                    <input type="button" onclick="submit()" class="btn btn-success" value="Submit Answer"><br><br>
+
+                </div>
+            </form>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <form method="POST" action="{% url 'onlinetest:yourtest' %}">
+                            {% csrf_token %}
+                            <input type="text" name="prev" hidden>
+                            <button class="btn btn-warning">Previous</button>
+                        </form>
+                    </div>
+                    <div class="col-md-4">
+                        <form method="POST" action="{% url 'onlinetest:yourtest' %}">
+                            {% csrf_token %} <input type="text" name="next" hidden>
+                            <button class="btn btn-primary">Next</button>
+                        </form>
+                    </div>
+                    {#            <nav class="page-navigation">#}
+                    {#                <span class="page-of"></span>#}
+                    {##}
+                    {##}
+                    {#                <ul class="page_navi clearfix">#}
+                    {##}
+                    {#                    <li class="disabled"><span>Previous</span></li>#}
+                    {##}
+                    {##}
+                    {#                    <li><span class="page-numbers current">1</span></li>#}
+                    {##}
+                    {##}
+                    {#                    <li class="page-numbers"><a href="?page=2">2</a></li>#}
+                    {##}
+                    {##}
+                    {#                    <li class="page-numbers"><a href="?page=2">Next</a></li>#}
+                    {##}
+                    {#                </ul>#}
+                    {##}
+                    {#            </nav>#}
+                    </ul>
+
+                    </nav>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div id="time"></div>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <br>
+    <center>
+        <footer id="footer" class="footer">
+            <br> ©2017 Open Source. All rights exploited
+            <div class="credits">
+                Designed and Developed for <a href="/"><b> HackNIEC</b></a><br>
+                <br>
+                <br>
+            </div>
+
+</footer>
+</center>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script>
+    var marks = {{ marks }}
+            function submit() {
+                var radios = document.getElementsByName('option');
+                var kks = document.getElementsByName('kks');
+                var answer = document.getElementsByName('answer');
+//window.alert(marks.value);
+                for (var i = 0, length = radios.length; i < length; i++) {
+                    if (radios[i].checked) {
+                        // do whatever you want with the checked radio
+                        if (answer.value == document.getElementsByName(radios[i].value).value) {
+                            //window.alert(marks.value);
+                            //window.alert(answer.value);
+                            //window.alert(document.getElementsByName(radios[i].value).value);
+                            //marks.value = 1 + parseInt(marks.value);
+                            marks = 1 + marks;
+                            kks.value = marks;
+                            window.alert(kks.value);
+                        }
+                        // only one radio can be logically checked, don't check the rest
+                        break;
+                    }
+                }
+
+
+                $("#formid").submit();
+
+            }
+</script>
+
+</body>
+
+</html>

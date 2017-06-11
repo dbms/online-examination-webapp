@@ -1,0 +1,74 @@
+{% extends "onlinetest/header.html" %} {% block content %}
+<br>
+<br>
+<br>
+<div class="container">
+    <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:register' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-8">
+                <h3>Register for conducting a Test</h3><br>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" maxlength="50" autofocus class="form-control input-lg" name="orgname" pattern="[a-zA-Z0-9-]+" placeholder="Organisation Name"
+                        required />
+                </div>
+                <div class="form-group">
+                    <input type="number" maxlength="10" class="form-control input-lg" name="orgSize" pattern="[a-zA-Z0-9-]+" placeholder="Organisation Size"
+                        required />
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" pattern="[789][0-9]{9}" maxlength="11" name="contactNumber" placeholder="Contact Number"
+                        required>
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" name="address" placeholder="Address" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="email" class="form-control input-lg" name="email" placeholder="Email-ID" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                        required />
+
+                </div>
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" name="orgType" pattern="[a-zA-Z0-9-]+" placeholder="Organisation Type" required
+                    />
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" class="form-control input-lg" name="pwd" placeholder="Create a Password" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password_confirm" oninput="check(this)" class="form-control input-lg" name="cpwd" placeholder="Confirm-Password"
+                        required>
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <button class="btn btn-info btn-lg btn-block">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<br>
+<br>
+<script language='javascript' type='text/javascript'>
+    function check(input) {
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('Password Must be Matching.');
+        } else {
+            // input is valid -- reset the error message
+            input.setCustomValidity('');
+        }
+    }
+
+</script>
+{% endblock %}

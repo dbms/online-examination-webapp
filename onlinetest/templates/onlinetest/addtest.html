@@ -1,0 +1,52 @@
+{% extends 'onlinetest/header.html' %}
+{% block content %}
+<hr>
+<div class="container-fluid">
+    <br>
+    <br>
+    <div class="row">
+
+        <div class="col-sm-12 col-md-7">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Fill online test details and upload excel file:</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="#" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% for field in form %}
+                        <div class="form-group">
+                         <div class="col-sm-offset-2 col-sm-10">
+                             <span class="text-danger small">{{ field.errors }}</span>
+                         </div>
+                         <label class="control-label col-sm-3">{{ field.label_tag }}</label>
+                         <div class="col-sm-9">{{ field }}</div>
+                        </div>
+                        {% endfor %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-5">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Test Details</h3>
+                    <p>Please provide a name for the test being conducted and specify the total marks, number of questions and time limit for the same. </p>
+                    <h3>Test File</h3>
+                    <p>Please upload the required excel file containing the list of questions along with options and the correct answer.<br> 
+                       Please ensure that excel file is according to the format specified by the sample file. </p>    
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

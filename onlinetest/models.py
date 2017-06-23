@@ -1,18 +1,25 @@
+from django.contrib.auth.models import Permission, User
 from django.db import models
 from django.utils import timezone
+import os
+import random
 
+# funcion for renaming uploaded files before storing them in the database
+def content_file_name(instance, filename):
+    ext = filename.split('.')[-1]
+    filename = "%s%s%s.%s" % (instance.user.username, instance.user.id + 1000, instance.test_title, ext)
+    return os.path.join('', filename)
 
-class clientsTable(models.Model):
-    orgname = models.CharField(max_length=30)
-    email = models.CharField(max_length=120, unique=True)
-    orgSize = models.CharField(max_length=20)
-    orgType = models.CharField(max_length=100)
-    contactNumber = models.CharField(max_length=15)
-    address = models.CharField(max_length=200)
-    pwd= models.CharField(max_length=80)
-   
+class Test(models.Model):
+    user = models.ForeignKey(User, default=1)
+    test_title = models.CharField(max_length=250)
+    test_marks = models.CharField(max_length=30)
+    test_questions = models.CharField(max_length=30)
+    test_time = models.CharField(max_length=30)
+    test_file = models.FileField(default='', upload_to=content_file_name)
+    test_number = models.CharField(max_length=30)
     def __str__(self):
-        return self.email
+        return self.test_title
 
 class studentProfile(models.Model):
     """Profile for a user to store roll number and other details."""

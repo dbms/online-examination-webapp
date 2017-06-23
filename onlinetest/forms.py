@@ -1,21 +1,22 @@
 import datetime
 from django import forms
+from django.contrib.auth.models import User
+from .models import Test
 
+class TestForm(forms.ModelForm):
 
-class clientRegister(forms.Form):
-    orgname = forms.CharField(max_length=50)
-    email = forms.CharField(max_length=120)
-    orgSize = forms.CharField(max_length=10)
-    orgType = forms.CharField(max_length=50)
-    contactNumber = forms.CharField(max_length=15)
-    address = forms.CharField(max_length=200)
-    pwd= forms.CharField(max_length=80)
+    class Meta:
+        model = Test
+        fields = ['test_title', 'test_marks', 'test_questions', 'test_time', 'test_file']
 
-class LoginForm(forms.Form):
-    email=forms.CharField(max_length = 80)
-    pwd= forms.CharField(max_length=80)
+class ClientForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
 
-class studenLoginForm(forms.Form):
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password']
+
+class StudenLoginForm(forms.Form):
     email = forms.CharField(max_length=120)
     password = forms.CharField(max_length=50)
 

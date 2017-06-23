@@ -1,7 +1,7 @@
 import csv
 import openpyxl
 import os
-from .models import clientsTable, studentProfile, question, quesFile, studentMark
+from .models import studentProfile, question, quesFile, studentMark
 
 root_path = os.path.dirname(os.path.abspath(__file__))
 

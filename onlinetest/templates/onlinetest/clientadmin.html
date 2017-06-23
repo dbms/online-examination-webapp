@@ -1,5 +1,6 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html> {% load static %}
+
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -16,98 +17,150 @@
     <link href='https://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'onlinetest/css/style1.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'onlinetest/css/imagehover.min.css' %}" type="text/css" />
-    <style>
-        .custab {
-            border: 1px solid #ccc;
-            padding: 5px;
-            margin: 5% 0;
-            box-shadow: 3px 3px 2px #ccc;
-            transition: 0.5s;
-        }
-
-        .custab:hover {
-            box-shadow: 3px 3px 0px transparent;
-            transition: 0.5s;
-        }
-    </style>
 </head>
 
-<body style="background: #f2f2f2">
-    <br>
-    <div class="container" style="background: #fff;padding: 10px">
-        <div class="row">
-            <div class="col-md-6">
-                <h3>WELCOME ADMIN </h3>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+                <a class="navbar-brand" href="index.html">ONLINE <span>TEST</span></a>
             </div>
-            <div class="col-md-6">
-                <a href="../clientlogout" class="btn btn-info" style="float: right">Logout</a>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/">About</a></li>
+                    <li><a href="/studentlogin">Students Area</a></li>
+                    <li><a href="/clientlogin">Client Area</a></li>
+
+                    <li class="btn-trial"><a href="/">It's Free  </a></li>
+                </ul>
             </div>
         </div>
-        <hr>
+    </nav>
+    <hr>
+    <div class="container-fluid">
+        <br>
         <div class="row">
             <div class="col-md-6">
+                <h3>WELCOME {{ user.username}} </h3>
+            </div>
+            <div class="col-md-4">
+                <a href="../clientlogout" class="btn btn-info" style="float: right">LOGOUT</a>
+            </div>
+        </div>
+        
+        <div class="row">
+            
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-body">
                 <h4>Download this sample EXCEL file to fill questions </h4>
-                    <a href="{% static 'onlinetest/docs/quesformat.xlsx' %}" class="btn btn-success">DOWNLOAD</a>
-            </div>
-            <div class="col-md-6">
-                <h4>Upload the EXCEL file to filled with questions </h4>
-                <form method="post" enctype="multipart/form-data" action="../simple_upload/">
-                    {% csrf_token %}<b>
-                    <input type="file" name="myfile"><br>
-                    <button type="submit" class="btn btn-primary">Upload</button>
-                    </b>
-                </form>
-                {% if uploaded_file_url %}
-                <br>
-                <b>File uploaded at: <a href="{{ uploaded_file_url }}">{{ uploaded_file_url }}</a></b>
-                {% endif %}
-            </div>
-        </div>
-
-            <hr>
-            <br/>
-            <center><a href="../studentmarksdisplay" class="btn btn-danger">Display Student Result</a></center>
-            <p></p>
-            <center><a href="#" class="btn btn-danger">Student Info</a></center>
-            <center>
-                <div class="custyle" style="width: 70%;align-content: center">
-                    <table class="table table-striped custab">
-                        <thead>
-                            <tr>
-                                <th>Client</th>
-                                <th>Name</th>
-                                <th>Email ID</th>
-                                <th>Institute</th>
-                            </tr>
-                        </thead>
-                        {% for tabledata in tabledata %} {% if tabledata.client == clientid %}
-                        <tr>
-                            <td>{{ tabledata.client }}</td>
-                            <td>{{ tabledata.name }}</td>
-                            <td>{{ tabledata.email }}</td>
-                            <td>{{ tabledata.institute }}</td>
-                        </tr>
-                        {% endif %} {% endfor %}
-                    </table>
+                <a href="{% static 'onlinetest/docs/quesformat.xlsx' %}" class="btn btn-warning">DOWNLOAD</a>
                 </div>
-            </center>
+              </div>  
+            </div>
+        
 
-
-            <center>
-                <footer id="footer" class="footer">
-                    <br> ©2017 Open Source. All rights exploited
-                    <div class="credits">
-                        Designed and Developed for <a href="/"><b> HackNIEC</b></a><br>
-                        <br>
-                    </div>
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                <h4>Upload the EXCEL file filled with questions </h4>
+                <a href="{% url 'onlinetest:addtest' %}" class="btn btn-warning">UPLOAD</a>
+                </div>
+              </div>
+            </div>    
         </div>
-        </footer>
-        </center>
 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
+        <div class="row">
+
+        
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                <div class="panel-body">
+                <h4>Generated Online Test ID for uploaded EXCEL files </h4><br>
+                <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Test Title</th>
+                            <th>Test File</th>
+                            <th>Test Unique ID</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for test in tests %}
+                            <tr>
+                                <td>{{ test.test_title }}</td>
+                                <td>
+                                    <a target="_blank" href="{{ test.test_file.url }}">
+                                        <button type="button" class="btn btn-info btn-xs">
+                                            <span class="glyphicon glyphicon-ok"></span>&nbsp; Open
+                                        </button>
+                                    </a>
+                                </td>
+                                <td>{{ test.test_number }}</td>
+                                <td>
+                                    <form action="{% url 'onlinetest:deletetest' test.id %}" method="post" style="display: inline;">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="test_id" value="{{ test.id }}" />
+                                        <button type="submit" class="btn btn-danger btn-xs">
+                                            <span class="glyphicon glyphicon-remove"></span>&nbsp; Delete
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                </table>
+                </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                <h4>Information of enrolled students </h4>
+                <a href="{% url 'onlinetest:studentInfo' %}" class="btn btn-warning">STUDENT INFO</a>
+                </div>
+              </div>  
+            </div>
+
+            <div class="col-md-6">
+              <div class="panel panel-default">
+                <div class="panel-body">
+                <h4>Result of enrolled students </h4>
+                <a href="{% url 'onlinetest:studentInfo' %}" class="btn btn-warning">RESULT</a>
+                </div>
+              </div>  
+            </div>
+
+        </div>
+
+    
     </div>
+    
+    <center>
+        <footer id="footer" class="footer navbar navbar-bottom">
+            <br> Summer Internship Project - 2017
+            <div class="credits>
+                Designed and Developed for <a href="/"><b> TCS Remote Internship</b></a><br>
+                <br>
+            </div>
+            </div>
+        </footer>
+    </center>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

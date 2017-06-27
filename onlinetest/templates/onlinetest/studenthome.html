@@ -1,60 +1,16 @@
-<!doctype html>
-<html class="no-js" lang="en">
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>
-    </title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> {% load staticfiles %}
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-        crossorigin="anonymous">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600italic,700,800' rel='stylesheet'
-        type='text/css'>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
-    <link href='https://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="{% static 'onlinetest/css/style1.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'onlinetest/css/imagehover.min.css' %}" type="text/css" />
-</head>
-
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-                <a class="navbar-brand" href="index.html">ONLINE <span>TEST</span></a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/">About</a></li>
-                    <li><a href="/studentlogin">Students Area</a></li>
-                    <li><a href="/clientlogin">Client Area</a></li>
-
-                    <li class="btn-trial"><a href="/">It's Free  </a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <br>
-    <br><br>
+{% extends "onlinetest/header.html" %} {% block content %}
     <br>
     <br/>
     <br/>
-    <center><div>Client No - {{ testfile_id.client }}</div></center>
+    <center><b>Test ID : {{ testid.test_id }} </b> </center>
     <div class="container">
         <div class="row">
             <div class="col-md-4">
+
                 <center>
                     <h3>Register</h3>
                 </center><br>
-                <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:studentInfo' %}">
+                <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:studentRegSave' %}">
                     {% csrf_token %}
                     <center>
                         <div class="form-group">
@@ -67,10 +23,10 @@
                             <input type="password" class="abc" name="password" placeholder="Password" required>
                         </div>
                         <div class="form-group">
-                            <input type="number" class="abc" name="institute" placeholder="Roll No or any ID" required>
+                            <input type="text" class="abc" name="rollno" placeholder="Roll No or ID" required>
                         </div>
-                        <div class="form-group" style="display: none">
-                            <input type="text" class="abc" name="client" value="{{ testfile_id.client }}" title="client">
+                        <div class="form-group" >
+                            <input type="text" class="abc" name="client" value="{{ testid.client_id }}" title="client">
                         </div>
                         <div class="form-group">
                             <button class="abcbut">Start Test</button>
@@ -118,25 +74,4 @@
             </div>
         </div>
     </div>
-    <br>
-
-    <br>
-    <center>
-        <footer id="footer" class="footer">
-            <br> ©2017 Open Source. All rights exploited
-            <div class="credits">
-                Designed and Developed for <a href="/"><b> HackNIEC</b></a><br>
-                <br>
-                <br>
-            </div>
-            </div>
-        </footer>
-    </center>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-
-</body>
-
-</html>
+<br>{% endblock %}

@@ -1,52 +1,94 @@
-{% extends 'onlinetest/header.html' %}
-{% block content %}
-<hr>
-<div class="container-fluid">
-    <br>
-    <br>
-    <div class="row">
+<!doctype html>
+<html class="no-js" lang="en">
 
-        <div class="col-sm-12 col-md-7">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h3>Fill online test details and upload excel file:</h3>
-                    {% if error_message %}
-                        <p><strong>{{ error_message }}</strong></p>
-                    {% endif %}
-                    <form class="form-horizontal" role="form" action="#" method="post" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {% for field in form %}
-                        <div class="form-group">
-                         <div class="col-sm-offset-2 col-sm-10">
-                             <span class="text-danger small">{{ field.errors }}</span>
-                         </div>
-                         <label class="control-label col-sm-3">{{ field.label_tag }}</label>
-                         <div class="col-sm-9">{{ field }}</div>
-                        </div>
-                        {% endfor %}
-                        <div class="form-group">
-                            <div class="col-sm-offset-3 col-sm-9">
-                                <button type="submit" class="btn btn-success">Submit</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>
+    </title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1"> {% load staticfiles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600italic,700,800' rel='stylesheet'
+        type='text/css'>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
+    <link href='https://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static 'onlinetest/css/style1.css' %}" type="text/css" />
+    <link rel="stylesheet" href="{% static 'onlinetest/css/imagehover.min.css' %}" type="text/css" />
+    <style>
+        .custab {
+            border: 1px solid #ccc;
+            padding: 5px;
+            margin: 5% 0;
+            box-shadow: 3px 3px 2px #ccc;
+            transition: 0.5s;
+        }
+
+        .custab:hover {
+            box-shadow: 3px 3px 0px transparent;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+
+<body style="background: #f2f2f2">
+    <br>
+    <div class="container" style="background: #fff;padding: 10px">
+        <div class="row">
+            <div class="col-md-6">
+                <h3>WELCOME - {{ client_id.email}} </h3>
+            </div>
+            <div class="col-md-2">
+                <a href="../home" class="btn btn-success"><b>HOME</b></a>
+            </div>
+            <div class="col-md-4">
+                <a href="../clientlogout" class="btn btn-info" style="float: center"><b>LOGOUT</b></a>
             </div>
         </div>
-
-        <div class="col-sm-12 col-md-5">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h3>Test Details</h3>
-                    <p>Please provide a name for the test being conducted and specify the total marks, number of questions and time limit for the same. </p>
-                    <h3>Test File</h3>
-                    <p>Please upload the required excel file containing the list of questions along with options and the correct answer.<br> 
-                       Please ensure that excel file is according to the format specified by the sample file. </p>    
+        <hr>
+        <div class="row">
+            <div class="col-sm-12 col-md-4">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12">
+                            <h3>Fill Test Details</h3><br>
+                            <form method="post" enctype="multipart/form-data" action="../simple_upload/">
+                                {% csrf_token %}
+                                <input type="text" class="form-control input-lg" name="testtitle" autofocus placeholder="Test Title" required>
+                                <BR>
+                                <input type="text" class="form-control input-lg" name="NumberOfQue" autofocus placeholder="No. of Questions" required>
+                                <BR>
+                                <input type="text" class="form-control input-lg" name="testduration" autofocus placeholder="Test Duration" required>
+                                <br>
+                                <a href="{% static 'onlinetest/docs/quesformat.xlsx' %}" class="btn btn-primary"> <b> Download this Excel File to fill Questions </b> </h4></a>
+                                <br>
+                                <h4><b>Upload the EXCEL file here </b></h4>
+                                <b>
+                                  <input type="file" name="myfile"><br>
+                                    <button type="submit" class="btn btn-primary"><b> Submit Test </b></button>
+                                </b>
+                            </form>
+                            {% if uploaded_file_url %}
+                            <br>
+                            <b>Test ID : {{ uploaded_file_url }}</b> 
+                            {% endif %}
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div class="col-sm-12 col-md-8">
+                <h3>Test Details</h3>
+                <p>Please provide a name for the test being conducted and specify the total marks, number of questions and time
+                    limit for the same. </p>
+                <h3>Test File</h3>
+                <p>Please upload the required excel file containing the list of questions along with options and the correct
+                    answer.
+                    <br> Please ensure that excel file is according to the format specified by the sample file.
+                </p>
+            </div>
         </div>
-
     </div>
+</body>
 
-</div>
-{% endblock %}
+</html>

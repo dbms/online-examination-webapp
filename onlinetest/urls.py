@@ -5,25 +5,26 @@ from django.conf.urls.static import static
 
 
 app_name = 'onlinetest' 
-#This sets application namespace to diffretiate urls of different apps.
 
 urlpatterns = [
-    #url for home-page:
     url(r'^$', views.index, name='index'),
-    #url for login-page:
     url(r'^studentlogin$', views.studentlogin, name='studentlogin'),
     url(r'^clientlogin$', views.clientlogin, name='clientlogin'),
-    #url for signup-page:
+    url(r'^clientloginVal$', views.clientloginVal, name='clientloginVal'),
     url(r'^clientregister$', views.clientregister, name='clientregister'),
-    url(r'^(?P<test_id>[0-9]+)/$', views.clientadmin, name='clientadmin'),
+    url(r'^adminhome$', views.adminhome, name='adminhome'),
+    url(r'^home$', views.home, name='home'),
+    url(r'^studentReg$', views.studentReg, name='studentReg'),
+    #url(r'^(?P<test_id>[0-9]+)/$', views.clientadmin, name='clientadmin'),
     url(r'^addtest$', views.addtest, name='addtest'),
     url(r'^(?P<test_id>[0-9]+)/deletetest/$', views.deletetest, name='deletetest'),
-    url(r'^testIdVal$', views.testIdVal, name='testIdVal'),
     url(r'^studentLogincheck$', views.studentLogincheck, name='studentLogincheck'),
     url(r'^studenthome$', views.studenthome, name='studenthome'),
     url(r'^yourtest$', views.yourtest, name='yourtest'),
+    url(r'^studentRegSave', views.studentRegSave, name='studentRegSave'),
     url(r'^studentInfo', views.studentInfo, name='studentInfo'),
     url(r'^clientlogout', views.clientlogout, name='clientlogout'),
+    url(r'^simple_upload', views.simple_upload, name='simple_upload'),
     url(r'^paper_submit$',views.paper_submit, name='paper_submit'),
     url(r'^studentmarksdisplay$',views.studentmarksdisplay, name='studentmarksdisplay'),
 

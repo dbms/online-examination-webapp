@@ -1,48 +1,44 @@
 import datetime
 from django import forms
 from django.contrib.auth.models import User
-from .models import Test
 
-class TestForm(forms.ModelForm):
+# for saving test details
+# class TestForm(forms.ModelForm):
 
-    class Meta:
-        model = Test
-        fields = ['test_title', 'test_marks', 'test_questions', 'test_time', 'test_file']
+#     class Meta:
+#         model = Test
+#         fields = ['test_title', 'test_marks', 'test_questions', 'test_time', 'test_file','client_id']
 
-class ClientForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
+# for client registration
+class clientRegisterForm(forms.Form):
+    email = forms.CharField(max_length=120)
+    contactNumber = forms.CharField(max_length=15)
+    pwd= forms.CharField(max_length=80)
 
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password']
+# for saving test detials
+class savetestdetails(forms.Form):
+    testtitle = forms.CharField(max_length=100)
+    NumberOfQue = forms.CharField(max_length=10)
+    testduration = forms.CharField(max_length=10)
 
+# for client login
+class LoginForm(forms.Form):
+    email=forms.CharField(max_length = 80)
+    pwd= forms.CharField(max_length=80)
+
+#for student login
 class StudenLoginForm(forms.Form):
     email = forms.CharField(max_length=120)
     password = forms.CharField(max_length=50)
 
-class StudentInfo(forms.Form):
+#for student registration
+class StudentRegForm(forms.Form):
     email = forms.CharField(max_length=120)
-    name = forms.CharField(max_length=30)
-    institute = forms.CharField(max_length=50)
+    name = forms.CharField(max_length=100)
+    rollno = forms.CharField(max_length=50)
     password = forms.CharField(max_length=50)
     client = forms.CharField(max_length=50)
 
-"""
-class AddTopicForm(forms.Form):
-    topic_text=forms.CharField(max_length = 250)
-    topic_desc=forms.CharField(max_length = 700)
-    tag_text=forms.CharField(max_length = 250)
-
-class AddOpinionForm(forms.Form):
-    opinion_text=forms.CharField(max_length = 500)
-    topic = forms.CharField(max_length = 5)
-"""
-
-
-class SearchForm(forms.Form):
-    topic_text=forms.CharField(max_length = 250)
-    #symptom=forms.MultipleChoiceField(widget=forms.CheckboxSelectMultiple,required=False)
-
-
+# for validating test ID
 class TestIdVal(forms.Form):
     test_id=forms.CharField(max_length = 250)

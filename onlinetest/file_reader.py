@@ -75,7 +75,7 @@ def write_db(data, client_name, file_id):
             option3=data[i].get(4),
             option4=data[i].get(5),
             answer=data[i].get(6),
-            questionType=data[i].get(7),
+            #questionType=data[i].get(7),
         )
     '''
     for i in data:

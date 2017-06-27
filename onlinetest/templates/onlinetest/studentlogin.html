@@ -2,15 +2,14 @@
 <br>
 <br>
 <br>
-
 <div class="container">
 
     <div class="row">
         <div class="col-md-6">
-            <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:testIdVal' %}">
+            <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:studentReg' %}">
                 {% csrf_token %}
                 <center><br>
-                    <input type="text" class="form-control input-lg" name="test_id" pattern="[a-zA-Z0-9-]+" title="Only Chars and Numbers Allowed" placeholder="Enter your Test ID " required><br>
+                    <input type="text" class="form-control input-lg" name="test_id"  autofocus placeholder="Enter your Test ID " required><br>
                 </center>
                 <button class="btn btn-primary btn-lg" type="submit">Start Test</button><br>
                 <br>

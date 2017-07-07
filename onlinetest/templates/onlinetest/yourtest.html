@@ -16,139 +16,156 @@
     <link href='https://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'onlinetest/css/style1.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'onlinetest/css/imagehover.min.css' %}" type="text/css" />
+    <link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="{% static 'onlinetest/js/paginathing.js' %}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $('.list-group').paginathing({
+                perPage: 1,
+                limitPagination: 9,
+                containerClass: ''  //panel-footer
+            })
+
+        });
+    </script>
 
 </head>
 
-<body>
-    <br>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <button type="button" class="btn btn-default"><b>Welcome - {{ user_id.name}}</b></button>
-            </div>
-            <div class="col-md-4">
-                <form method="POST" id="formid" action="{% url 'onlinetest:paper_submit' %}">
-                    {% csrf_token %}
-                    <input type="button" onclick="submit()" class="btn btn-danger" value="Submit Test" style="font-weight: bolder">
-                    <input type="text" value="{{ marks }}" name="kks" hidden>
-
-                </form>
-            </div>
-            <div class="col-md-4">
-                <div id="time" class="btn btn-default" style="font-weight: bolder">
+<body style="background: #f2f2f2;margin-top: 30px;">
+    <div class="container" style="background: #fff;padding: 2em;border-radius:5px">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <button type="button" class="btn btn-default"><b>Welcome - {{ user_id.name}}</b></button>
+                </div>
+                <div class="col-md-5">
+                    <form method="POST" id="formid" action="{% url 'onlinetest:paper_submit' %}">
+                        {% csrf_token %}
+                        <input type="text" value="0" id="finalmarks" name="totalmarks" hidden>
+                        <button class="btn btn-danger" type="submit" onclick="submitTest()" style="font-weight: bolder">Submit Test</button>
+                    </form>
+                </div>
+                <div class="col-md-2">
+                    <div id="time" class="btn btn-default" style="font-weight: bolder">
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br> <br>{% for que in ques %}
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9">
-                <button type="button" class="btn btn-primary"><b>Question - {{forloop.counter}}</b></button>
-                <br>
-                <br>
-                <b>  {{ que.question }} </b>
-                <div class="checkbox">
-                    <label>
-                                    <input type="radio" name="option" value="1">
-                                    {{ que.option1 }} <input type="text" value="{{ que.option1 }}" name="1"
-                                                                  hidden>
-                                </label>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        {% for que in ques %}
+                        <li class="list-group-item">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-primary"><b>Question - {{forloop.counter}}</b></button>
+                                        <br>
+                                        <br>
+                                        <b>  {{ que.question }} </b> {% if question.option1 != "na" %}
+                                        <div>
+                                            <label>
+                                                 <input type="radio" name="option{{forloop.counter}}" value="1" id="{{forloop.counter}}A">
+                                                     {{ que.option1 }}
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="radio" name="option{{forloop.counter}}" value="2" id="{{forloop.counter}}B">
+                                                    {{ que.option2 }} 
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="radio" name="option{{forloop.counter}}" value="3" id="{{forloop.counter}}C">
+                                                {{ que.option3 }} 
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <label>
+                                                <input type="radio" name="option{{forloop.counter}}" value="4" id="{{forloop.counter}}D">
+                                                {{ que.option4 }} 
+                                            </label>
+                                            <br>
+                                            <div>
+                                                <input type="radio" value="{{que.answer}}" id="{{forloop.counter}}ANSWER" hidden>
+                                                <input type="radio" value="{{timer.testduration}}" id="testduration1" hidden>
+                                                <!--name="option{{forloop.counter}}" - for radio button grouping-->
+                                            </div>
+                                        </div>
+                                        {% else %} {% endif %}
+                                    </div>
+                                    <div class="col-md-3">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
                 </div>
-                <div class="checkbox">
-                    <label>
-                                    <input type="radio" name="option" value="2">
-                                    {{ que.option2 }} <input type="text" value="{{ que.option2 }}" name="2"
-                                                                  hidden>
-                                </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                                    <input type="radio" name="option" value="3">
-                                    {{ que.option3 }} <input type="text" value="{{ que.option3 }}" name="3"
-                                                                  hidden>
-                                </label>
-                </div>
-                <div class="checkbox">
-                    <label>
-                                    <input type="radio" name="option" value="4">
-                                    {{ que.option4 }} <input type="text" value="{{ que.option4 }}" name="4"
-                                                                  hidden>
-                                </label>
-                </div>
-                <div>
-                    <input type="button" id="{{forloop.counter}}" value="Submit" class="btn btn-success" style="font-weight: bolder">
-                </div>
-
-                <br>
-            </div>
-            <div class="col-md-3">
             </div>
         </div>
-    </div>
-    {% endfor %}
-    <br>
-    <center>
-        <footer id="footer" class="footer">
-            <br> Summer Internship Project - 2017
-            <div class="credits">
-                Designed and Developed for <a href="/"><b> TCS Remote Internship</b></a><br>
-                <br>
-            </div>
-            </div>
-        </footer>
-    </center>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-    <script>
-        // Timer begins
-        function startTimer(duration, display) {
-            var timer = duration, minutes, seconds;
-            setInterval(function () {
-                minutes = parseInt(timer / 60, 10);
-                seconds = parseInt(timer % 60, 10);
-                minutes = minutes < 10 ? "0" + minutes : minutes;
-                seconds = seconds < 10 ? "0" + seconds : seconds;
-                display.textContent = minutes + ":" + seconds;
-                if (--timer < 0) {
-                    timer = duration;
-                }
-            }, 1000);
-        }
-        window.onload = function () {
-            var onehour = 60 * 60,
-                display = document.querySelector('#time');
-            startTimer(onehour, display);
-        };
-        // Timer Ends
 
-        // Marks calculation begins
-        function submit() {
-            var radios = document.getElementsByName('option');
-            var kks = document.getElementsByName('kks');
-            var answer = document.getElementsByName('answer');
-            //window.alert(marks.value);
-            for (var i = 0, length = radios.length; i < length; i++) {
-                if (radios[i].checked) {
-                    // do whatever you want with the checked radio
-                    if (answer.value == document.getElementsByName(radios[i].value).value) {
-                        //window.alert(marks.value);
-                        //window.alert(answer.value);
-                        //window.alert(document.getElementsByName(radios[i].value).value);
-                        //marks.value = 1 + parseInt(marks.value);
-                        marks = 1 + marks;
-                        kks.value = marks;
-                        window.alert(kks.value);
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+        <script>
+            // Timer begins
+            function startTimer(duration, display) {
+                var timer = duration, minutes, seconds;
+                setInterval(function () {
+                    minutes = parseInt(timer / 60, 10);
+                    seconds = parseInt(timer % 60, 10);
+                    minutes = minutes < 10 ? "0" + minutes : minutes;
+                    seconds = seconds < 10 ? "0" + seconds : seconds;
+                    display.textContent = minutes + ":" + seconds;
+                    if (--timer < 0) {
+                        submitTest();
                     }
-                    // only one radio can be logically checked, don't check the rest
-                    break;
-                }
+                }, 1000);
             }
-            $("#formid").submit();
-        }
+            window.onload = function () {
+                var testduration = document.getElementById('testduration1').value;
+                var onehour = testduration * 60;
+                display = document.querySelector('#time');
+                startTimer(onehour, display);
+            };
+            // Timer Ends
+
+            // Marks calculation begins
+            function submitTest() {
+                var marks = 0;
+                for (var i = 1; i < 10; i++) {
+                    if (document.getElementById(i + "A").checked) {
+                        if (document.getElementById(i + "A").value == document.getElementById(i + "ANSWER").value)
+                            marks++;
+                    }
+                    else if (document.getElementById(i + "B").checked) {
+                        if (document.getElementById(i + "B").value == document.getElementById(i + "ANSWER").value)
+                            marks++;
+                    }
+                    else if (document.getElementById(i + "C").checked) {
+                        if (document.getElementById(i + "C").value == document.getElementById(i + "ANSWER").value)
+                            marks++;
+                    }
+                    else if (document.getElementById(i + "D").checked) {
+                        if (document.getElementById(i + "D").value == document.getElementById(i + "ANSWER").value)
+                            marks++;
+                    }
+                    else { }
+                }
+                // alert("Your Score - " + marks);
+                document.getElementById('finalmarks').value = marks;
+                alert(marks);
+                $("#formid").submit();
+            }
         // Marks calculations Ends
-    </script>
+        </script>
+    </div>
 </body>
 
 </html>

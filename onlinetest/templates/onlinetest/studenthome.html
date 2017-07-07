@@ -1,77 +1,77 @@
 {% extends "onlinetest/header.html" %} {% block content %}
-    <br>
-    <br/>
-    <br/>
-    <center><b>Test ID : {{ testid.test_id }} </b> </center>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
+<br>
+<br/>
+<br/>
+<center><b>Test ID : {{ testid.test_id }} </b> </center>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
 
+            <center>
+                <h3>Register</h3>
+            </center><br>
+            <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:studentRegSave' %}">
+                {% csrf_token %}
                 <center>
-                    <h3>Register</h3>
-                </center><br>
-                <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:studentRegSave' %}">
-                    {% csrf_token %}
-                    <center>
-                        <div class="form-group">
-                            <input type="text" class="abc" name="name" placeholder="Your Name" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="email" class="abc" name="email" placeholder="Email-ID" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="abc" name="password" placeholder="Password" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="abc" name="rollno" placeholder="Roll No or ID" required>
-                        </div>
-                        <div class="form-group" >
-                            <input type="text" class="abc" name="client" value="{{ testid.client_id }}" title="client">
-                        </div>
-                        <div class="form-group">
-                            <button class="abcbut">Start Test</button>
-                        </div>
-                    </center>
-                </form>
-            </div>
-            <div class="col-md-4">
-            </div>
-            <div class="col-md-4">
-                <center>
-                    <h3> Sign In</h3>
-                </center><br>
-                <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:studentLogincheck' %}">
-                    {% csrf_token %}
-                    <center>
-                        <div class="form-group">
-                            <input type="email" class="abc" name="email" placeholder="Email-ID" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="abc" name="password" placeholder="Password" required>
-                        </div>
-                        <div class="form-group">
-                            <button class="abcbut" type="submit">Start Test</button>
-                        </div>
-                    </center>
-                </form>
-            </div>
+                    <div class="form-group">
+                        <input type="text" class="abc" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" class="abc" name="email" placeholder="Email-ID" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="abc" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" class="abc" name="rollno" placeholder="Roll No or ID" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="hidden" class="abc" name="client" value="{{ testid.client_id }}">
+                    </div>
+                    <div class="form-group">
+                        <button class="abcbut">Start Test</button>
+                    </div>
+                </center>
+            </form>
         </div>
-        <div class="row">
-            <div class="col-md-12">
-               <h3 style="padding-left: 40px"> IMPORTANT INSTRUCTIONS </h3>
-                <ul>
-                    <li>1) Close all tabs in your browser.</li>
-                    <li>2) Donot refresh or close the window during the test.</li>
-                    <li>3) Students must not stop the session and then return to it.
-                    </li>
-                    <li>4) Make sure that you have a stable internet connection.</li>
-                    <li>5) Internet Explorer 9, Firefox 1, or Google Chrome are required to log into the exam. </li>
-                    <li>6) The student may not use his or her textbook, course notes, or receive help from a proctor or any other
-                        outside source. </li>
-                    </li>
-                </ul>
-
-            </div>
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+            <center>
+                <h3> Sign In</h3>
+            </center><br>
+            <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:studentLogincheck' %}">
+                {% csrf_token %}
+                <center>
+                    <div class="form-group">
+                        <input type="email" class="abc" name="email" autofocus placeholder="Email-ID" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="abc" name="password" placeholder="Password" required>
+                    </div>
+                    <div class="form-group">
+                        <button class="abcbut" type="submit">Start Test</button>
+                    </div>
+                </center>
+            </form>
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-12">
+            <h3 style="padding-left: 40px"> IMPORTANT INSTRUCTIONS </h3>
+            <ul>
+                <li>1) Close all tabs in your browser.</li>
+                <li>2) Donot refresh or close the window during the test.</li>
+                <li>3) Students must not stop the session and then return to it.
+                </li>
+                <li>4) Make sure that you have a stable internet connection.</li>
+                <li>5) Internet Explorer 9, Firefox 1, or Google Chrome are required to log into the exam. </li>
+                <li>6) The student may not use his or her textbook, course notes, or receive help from a proctor or any other
+                    outside source. </li>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
 <br>{% endblock %}

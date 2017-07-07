@@ -36,14 +36,14 @@
     <br>
     <div class="container" style="background: #fff;padding: 10px">
         <div class="row">
-            <div class="col-md-6">
-                <h3>WELCOME - {{ client_id.email}} </h3>
+            <div class="col-md-4">
+                <a href="#" class="btn btn-default"><b>WELCOME - {{ client_id.email}}</b></a>
             </div>
             <div class="col-md-2">
-                <a href="../home" class="btn btn-success"><b>HOME</b></a>
+                <a href="../home" class="btn btn-default"><b>HOME</b></a>
             </div>
-            <div class="col-md-4">
-                <a href="../clientlogout" class="btn btn-info" style="float: center"><b>LOGOUT</b></a>
+            <div class="col-md-6" style="text-align: right">
+                <a href="../clientlogout" class="btn btn-primary" style="float: center"><b>LOGOUT</b></a>
             </div>
         </div>
         <hr>
@@ -56,10 +56,8 @@
                             <form method="post" enctype="multipart/form-data" action="../simple_upload/">
                                 {% csrf_token %}
                                 <input type="text" class="form-control input-lg" name="testtitle" autofocus placeholder="Test Title" required>
-                                <BR>
-                                <input type="text" class="form-control input-lg" name="NumberOfQue" autofocus placeholder="No. of Questions" required>
-                                <BR>
-                                <input type="text" class="form-control input-lg" name="testduration" autofocus placeholder="Test Duration" required>
+                                <br>
+                                <input type="text" class="form-control input-lg" name="testduration" autofocus placeholder="Test Duration [Minutes]" required>
                                 <br>
                                 <a href="{% static 'onlinetest/docs/quesformat.xlsx' %}" class="btn btn-primary"> <b> Download this Excel File to fill Questions </b> </h4></a>
                                 <br>

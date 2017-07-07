@@ -24,9 +24,11 @@ urlpatterns = [
     url(r'^studentRegSave', views.studentRegSave, name='studentRegSave'),
     url(r'^studentInfo', views.studentInfo, name='studentInfo'),
     url(r'^clientlogout', views.clientlogout, name='clientlogout'),
+    url(r'^studentmarksAnalysis', views.studentmarksAnalysis, name='studentmarksAnalysis'),
+    url(r'^studentlogout', views.studentlogout, name='studentlogout'),
     url(r'^simple_upload', views.simple_upload, name='simple_upload'),
     url(r'^paper_submit$',views.paper_submit, name='paper_submit'),
-    url(r'^studentmarksdisplay$',views.studentmarksdisplay, name='studentmarksdisplay'),
+    #url(r'^studentmarksdisplay$',views.studentmarksdisplay, name='studentmarksdisplay'),
 
     
 ]

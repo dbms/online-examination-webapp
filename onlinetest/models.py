@@ -4,6 +4,7 @@ from django.utils import timezone
 import os
 import random
 
+
 class clientsTable(models.Model):
     email = models.CharField(max_length=120, unique=True)
     contactNumber = models.CharField(max_length=15)
@@ -14,10 +15,9 @@ class clientsTable(models.Model):
 
 
 class testDetails(models.Model):
-    test_id = models.CharField(max_length=50,unique=True)
+    test_id = models.CharField(max_length=50, unique=True)
     client_id = models.CharField(max_length=100, default=0)
     testtitle = models.CharField(max_length=250)
-    NumberOfQue = models.CharField(max_length=30)
     testduration = models.CharField(max_length=30)
 
     def __str__(self):
@@ -44,15 +44,14 @@ class question(models.Model):
     option4 = models.CharField(max_length=100)
     answer = models.CharField(max_length=500)
 
-
-class quesFile(models.Model):
-    """ques paper"""
-    ques_paper_id = models.CharField(max_length=50, unique=True)
-    client = models.CharField(max_length=50)
-
+    def __str__(self):
+        return self.question    
 
 class studentMark(models.Model):
-    """student marks"""
+    studentid = models.CharField(max_length=120,default=0)
     ques_paper_id = models.CharField(max_length=50)
-    email = models.EmailField(max_length=120, unique=True)
     marks = models.CharField(max_length=50)
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
+    testtitle = models.CharField(max_length=50)
+    client = models.CharField(max_length=50, default=None)

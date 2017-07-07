@@ -2,13 +2,6 @@ import datetime
 from django import forms
 from django.contrib.auth.models import User
 
-# for saving test details
-# class TestForm(forms.ModelForm):
-
-#     class Meta:
-#         model = Test
-#         fields = ['test_title', 'test_marks', 'test_questions', 'test_time', 'test_file','client_id']
-
 # for client registration
 class clientRegisterForm(forms.Form):
     email = forms.CharField(max_length=120)
@@ -18,8 +11,11 @@ class clientRegisterForm(forms.Form):
 # for saving test detials
 class savetestdetails(forms.Form):
     testtitle = forms.CharField(max_length=100)
-    NumberOfQue = forms.CharField(max_length=10)
     testduration = forms.CharField(max_length=10)
+
+#for submitting marks
+class saveMarks(forms.Form):
+    totalmarks = forms.CharField(max_length=20)
 
 # for client login
 class LoginForm(forms.Form):

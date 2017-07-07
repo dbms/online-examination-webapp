@@ -1,7 +1,7 @@
 import csv
 import openpyxl
 import os
-from .models import studentProfile, question, quesFile, studentMark
+from .models import studentProfile, question, studentMark
 
 root_path = os.path.dirname(os.path.abspath(__file__))
 
@@ -52,7 +52,7 @@ def read_xl(filename):
         row_count = i.max_row
         col_count = i.max_column
         print(row_count, col_count)
-        for row in range(1,row_count):
+        for row in range(2,row_count):
             data[row-1] = {}
             for col in range(1,col_count):
                 a = i.cell(column=col, row=row).value

@@ -1,14 +1,16 @@
 from django.contrib.auth.models import Permission
 from django.db import models
-from django.utils import timezone
+from datetime import datetime
 import os
 import random
 
 
 class clientsTable(models.Model):
+    name = models.CharField(max_length=50)
     email = models.CharField(max_length=120, unique=True)
     contactNumber = models.CharField(max_length=15)
     pwd = models.CharField(max_length=80)
+    date = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.email
@@ -19,6 +21,7 @@ class testDetails(models.Model):
     client_id = models.CharField(max_length=100, default=0)
     testtitle = models.CharField(max_length=250)
     testduration = models.CharField(max_length=30)
+    date = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.test_id
@@ -30,6 +33,7 @@ class studentProfile(models.Model):
     password = models.CharField(max_length=50, default=None)
     rollno = models.CharField(max_length=50, default=None)
     client = models.CharField(max_length=50, default=None)
+    date = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.email
@@ -43,6 +47,7 @@ class question(models.Model):
     option3 = models.CharField(max_length=100)
     option4 = models.CharField(max_length=100)
     answer = models.CharField(max_length=500)
+    date = models.DateTimeField(default=datetime.now, blank=True)
 
     def __str__(self):
         return self.question    
@@ -55,3 +60,7 @@ class studentMark(models.Model):
     email = models.CharField(max_length=50)
     testtitle = models.CharField(max_length=50)
     client = models.CharField(max_length=50, default=None)
+    date = models.DateTimeField(default=datetime.now, blank=True)
+    
+    def __str__(self):
+        return self.email 

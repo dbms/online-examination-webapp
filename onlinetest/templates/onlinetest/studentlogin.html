@@ -1,17 +1,15 @@
 {% extends "onlinetest/header.html" %} {% block content %}
 <br>
 <br>
-<br>
 <div class="container">
-
     <div class="row">
         <div class="col-md-6">
             <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:studentReg' %}">
                 {% csrf_token %}
-                <center><br>
+                <center>
                     <input type="text" class="form-control input-lg" name="test_id"  autofocus placeholder="Enter your Test ID " required><br>
                 </center>
-                <button class="btn btn-primary btn-lg" type="submit">Start Test</button><br>
+                <button class="btn btn-primary btn-lg" type="submit"><b>Start Test</b></button><br>
                 <br>
                 <h3> Some Basic Instructions </h3>
             </form>
@@ -21,9 +19,8 @@
         <div class="col-md-12">
             <ul>
                 <li>1) Close all tabs in your browser.</li>
-                <li>2) Donot refresh or close the window during the test.</li>
-                <li>3) Students must not stop the session and then return to it.
-                </li>
+                <li>2) Do not refresh or close the window during the test.</li>
+                <li>3) Students must not stop the session and then return to it.</li>
                 <li>4) Make sure that you have a stable internet connection.</li>
                 <li>5) Internet Explorer 9, Firefox 1, or Google Chrome are required to log into the exam. </li>
                 <li>6) The student may not use his or her textbook, course notes, or receive help from a proctor or any other
@@ -34,4 +31,5 @@
         </div>
     </div>
 </div>
+
 {% endblock %}

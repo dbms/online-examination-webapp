@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 # for client registration
 class clientRegisterForm(forms.Form):
+    name = forms.CharField(max_length=50)
     email = forms.CharField(max_length=120)
     contactNumber = forms.CharField(max_length=15)
     pwd= forms.CharField(max_length=80)

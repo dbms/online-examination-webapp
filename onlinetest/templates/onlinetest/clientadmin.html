@@ -14,76 +14,109 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600italic,700,800' rel='stylesheet'
         type='text/css'>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
-    <link href='https://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="{% static 'onlinetest/css/style1.css' %}" type="text/css" />
-    <link rel="stylesheet" href="{% static 'onlinetest/css/font-awesome.min.css' %}" type="text/css" />
 </head>
 
-<body style="background: #f2f2f2">
-    <br>
-    <div class="container" style="background: #fff;padding: 10px;border-radius:5px">
-        <div class="row">
-            <div class="col-md-10">
-                <a href="#" class="btn btn-default"><b>WELCOME - {{ client_id.email}}</b></a>
-            </div>
-            <div class="col-md-2">
-                <a href="../clientlogout" class="btn btn-primary btn-sm" style="float: right"><b>LOGOUT</b></a>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-4">
-                <a href="{% url 'onlinetest:addtest' %}" class="btn btn-primary"><b>CONDUCT TEST</b></a>
-            </div>
-            <div class="col-md-4">
-                <a href="{% url 'onlinetest:studentInfo' %}" class="btn btn-primary"><b>ENROLLED STUDENTS INFORMATION</b></a>
-            </div>
-            <div class="col-md-4" style="text-align: right">
-                <a href="{% url 'onlinetest:studentmarksAnalysis' %}" class="btn btn-primary"><b>RESULT ANALYSIS</b></a>
-            </div>
-        </div>
-        <br>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <center>
-                            <a href="#" class="btn btn-success btn-lg"><b>UPLOADED TESTS</b></a>
-                        </center>
-                        <br>
-                        <table class="table table-striped" style="max-height: 400px;overflow: auto;border:5px solid #ccc">
-                            <thead>
-                                <tr>
-                                    <th>Test Title</th>
-                                    <th>Test Unique ID</th>
-                                    <th> Test Duration </th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {% for tests in test %}
-                                <tr>
-                                    <td>{{ tests.testtitle }}</td>
-                                    <td>{{ tests.test_id }}</td>
-                                    <td>{{ tests.testduration }} [Minutes]</td>
-                                    <td>
-                                        <form action="{% url 'onlinetest:deletetest' tests.id %}" method="post" style="display: inline;">
-                                            {% csrf_token %}
-                                            <input name="test_id" value="{{ tests.id }}" hidden/>
-                                            <button type="submit" class="btn btn-danger btn-xs"> Delete </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    </div>
+<body style="height: 100%">
+    <div style="min-height: 87.6%">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">ONLINE EXAMINATION</a>
                 </div>
-
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/home">CLIENT PROFILE</a></li>
+                        <li class="btn-trial"><a href="/clientlogout">LOGOUT</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <br>
+        <div class="container">
+            <div class="mail-box">
+                <aside class="sm-side">
+                    <div class="user-head">
+                        <a class="inbox-avatar" href="javascript:;">
+                              <img  width="64" hieght="60" src="{% static 'onlinetest/img/business.png' %}">
+                          </a>
+                        <div class="user-name">
+                            <h3>{{ client_id.name }}</h3>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="inbox-body">
+                        <a href="/addtest" title="Compose" class="btn btn-compose">CONDUCT TEST</a><br><br><br>
+                        <a href="/studentInfo" title="Compose" class="btn btn-compose">ENROLLED STUDENTS</a><br><br><br>
+                        <a href="/studentmarksAnalysis" title="Compose" class="btn btn-compose">RESULT ANALYSIS</a><br>
+                    </div>
+                </aside>
+                <aside class="lg-side">
+                    <div class="inbox-head">
+                        <h3><b>Welcome</b></h3>
+                    </div>
+                    <div class="inbox-body">
+                        <div class="mail-option">
+                            <div class="btn btn-primary col-sm-3 col-sm-offset-4"> <b> UPLOADED TESTS </b></div>
+                            <div style="text-align: right;font-weight: bolder">
+                                {% if test.has_previous %}
+                                <a href="?page={{ test.previous_page_number }}">Previous</a> | {% endif %}
+                                <span class="current">
+                            Page {{ test.number }} of {{ test.paginator.num_pages }} |
+                            </span> {% if test.has_next %}
+                                <a href="?page={{ test.next_page_number }}"> Next</a> {% endif %}
+                                </span>
+                            </div>
+                            <br><br>
+                            <table class="table table-striped" style="max-height: 400px;overflow: auto;border:5px solid #ccc">
+                                <thead>
+                                    <tr>
+                                        <th>Test Category</th>
+                                        <th>Test Unique ID</th>
+                                        <th> Test Duration </th>
+                                        <th>Actions</th>
+                                        <th> Date/Time </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for tests in test %}
+                                    <tr>
+                                        <td>{{ tests.testtitle }}</td>
+                                        <td>{{ tests.test_id }}</td>
+                                        <td>{{ tests.testduration }} [Minutes]</td>
+                                        <td>
+                                            <form action="{% url 'onlinetest:deletetest' tests.id %}" method="post" style="display: inline;">
+                                                {% csrf_token %}
+                                                <input name="test_id" value="{{ tests.id }}" hidden/>
+                                                <button type="submit" class="btn btn-danger btn-xs"> Delete </button>
+                                            </form>
+                                        </td>
+                                        <td>{{ tests.date }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </div>
-
     </div>
+    <br>
+    <center>
+        <footer id="footer" class="footer" style="padding: 17px 0">
+            Summer Internship Project - 2017
+            <div class="credits">
+                Designed and Developed for <a href="/"><b> TCS Remote Internship</b></a><br>
+            </div>
+            </div>
+        </footer>
+    </center>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>

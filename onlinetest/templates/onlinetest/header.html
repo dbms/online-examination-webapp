@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>
+    <title> Top Free Online Tests - PRACTICE, ANALYZE & IMPROVE!
     </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1"> {% load staticfiles %}
@@ -14,44 +14,44 @@
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600italic,700,800' rel='stylesheet'
         type='text/css'>
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
-    <link href='https://fonts.googleapis.com/css?family=Sonsie+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'onlinetest/css/style1.css' %}" type="text/css" />
     <link rel="stylesheet" href="{% static 'onlinetest/css/imagehover.min.css' %}" type="text/css" />
 </head>
 
-<body>
-    <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+<body style="height: 100%">
+    <div style="min-height: 87.6%">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-                <a class="navbar-brand" href="/">ONLINE <span>TEST</span></a>
+                    <a class="navbar-brand" href="/">Online EXAMINATION</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/">HOME</a></li>
+                        <li><a href="/about">ABOUT</a></li>
+                        <li><a href="/studentlogin">STUDENTS AREA</a></li>
+                        <li><a href="/clientlogin">CLIENT AREA</a></li>
+                        <li class="btn-trial"><a href="/trytest">PRACTICE HERE </a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/">About</a></li>
-                    <li><a href="/studentlogin">Students Area</a></li>
-                    <li><a href="/clientlogin">Client Area</a></li>
-
-                    <li class="btn-trial"><a href="/">It's Free  </a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    {% block content %} {% endblock %}
-    <center>
+        </nav>
+        {% block content %} {% endblock %}
+    </div>
+    <div style="text-align: center">
         <footer id="footer" class="footer" style="padding: 17px 0">
-             Summer Internship Project - 2017
+            Summer Internship Project - 2017
             <div class="credits">
                 Designed and Developed for <a href="/"><b> TCS Remote Internship</b></a><br>
             </div>
-            </div>
         </footer>
-    </center>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>

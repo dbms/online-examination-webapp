@@ -18,53 +18,71 @@
     <link rel="stylesheet" href="{% static 'onlinetest/css/imagehover.min.css' %}" type="text/css" />
 </head>
 
-<body style="background: #f2f2f2">
-    <br>
-    <div class="container" style="background: #fff;padding: 10px;border-radius:5px">
-        <div class="row">
-            <div class="col-md-5">
-                <a href="#" class="btn btn-default"><b>WELCOME - {{ client_id.email}}</b></a>
+<body style="height: 100%">
+    <div style="min-height: 87.6%">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">ONLINE EXAMINATION</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/home">CLIENT PROFILE</a></li>
+                        <li class="btn-trial"><a href="/clientlogout">LOGOUT</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-2">
-                <a href="../home" class="btn btn-default"><b>HOME</b></a>
-            </div>
-            <div class="col-md-5" style="text-align: right">
-                <a href="../clientlogout" class="btn btn-primary" style="float: center"><b>LOGOUT</b></a>
-            </div>
-        </div>
+        </nav>
         <br>
-        <br>
-        <center>
-            <a href="#" class="btn btn-success btn-lg"><b>STUDENT MARKS INFORMATION</b></a>
-        </center>
-        <br>
-        <table class="table table-striped" style="max-height: 400px;overflow: auto;border:5px solid #ccc">
-            <thead>
+        <div class="container" style="background: #fff;padding: 10px;border-radius:5px">
+            <br>
+            <br>
+            <center>
+                <a href="#" class="btn btn-primary btn-lg"><b>STUDENT MARKS INFORMATION</b></a>
+            </center>
+            <br>
+            <table class="table table-striped" style="max-height: 400px;overflow: auto;border:5px solid #ccc">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Category </th>
+                        <th>Test ID</th>
+                        <th>Marks</th>
+                        <th>Date/Time</th>
+                    </tr>
+                </thead>
+                {% for i in stuMarks %}
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Paper Title </th>
-                    <th>Paper ID</th>
-                    <th>Marks</th>
+                    <td>{{ i.name }}</td>
+                    <td>{{ i.email }}</td>
+                    <td>{{ i.testtitle }}</td>
+                    <td>{{ i.ques_paper_id }}</td>
+                    <td>{{ i.marks }}</td>
+                    <td>{{ i.date }}</td>
                 </tr>
-            </thead>
-            {% for i in stuMarks %}
-            <tr>
-                <td>{{ i.name }}</td>
-                <td>{{ i.email }}</td>
-                <td>{{ i.testtitle }}</td>
-                <td>{{ i.ques_paper_id }}</td>
-                <td>{{ i.marks }}</td>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+                {% endfor %}
+            </table>
+        </div>
     </div>
 
+    <center>
+        <footer id="footer" class="footer" style="padding: 17px 0">
+            Summer Internship Project - 2017
+            <div class="credits">
+                Designed and Developed for <a href="/"><b> TCS Remote Internship</b></a><br>
+            </div>
+            </div>
+        </footer>
+    </center>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
         crossorigin="anonymous"></script>
-
 </body>
 
 </html>

@@ -1,3 +1,12 @@
+html {
+      height: 100%;
+      width: 100%;
+    }
+
+body{
+      min-height: 100%;
+}
+
 .page-navigation {
     border-top: 1px solid #DDDDDD;
     clear: both;
@@ -117,6 +126,294 @@ a{
 a:hover, a:focus{
     color: #5fcf80;
 }
+
+.grow:hover
+{
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+.mail-box {
+    border-collapse: collapse;
+    border-spacing: 0;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+.mail-box aside {
+    display: table-cell;
+    float: none;
+    padding: 0;
+    vertical-align: top;
+}
+.mail-box .sm-side {
+    background: none repeat scroll 0 0 #e5e8ef;
+    border-radius: 4px 0 0 4px;
+    width: 25%;
+}
+.mail-box .lg-side {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 0 4px 4px 0;
+    width: 75%;
+}
+.mail-box .sm-side .user-head {
+    background: none repeat scroll 0 0 #00a8b3;
+    border-radius: 4px 0 0;
+    color: #fff;
+    min-height: 80px;
+    padding: 10px;
+}
+.user-head .inbox-avatar {
+    float: left;
+    width: 65px;
+}
+.user-head .inbox-avatar img {
+    border-radius: 4px;
+}
+.user-head .user-name {
+    display: inline-block;
+    margin: 0 0 0 10px;
+}
+.user-head .user-name h5 {
+    font-size: 14px;
+    font-weight: 300;
+    margin-bottom: 0;
+    margin-top: 15px;
+}
+.user-head .user-name h5 a {
+    color: #fff;
+}
+.user-head .user-name span a {
+    color: #87e2e7;
+    font-size: 12px;
+}
+a.mail-dropdown {
+    background: none repeat scroll 0 0 #80d3d9;
+    border-radius: 2px;
+    color: #01a7b3;
+    font-size: 10px;
+    margin-top: 20px;
+    padding: 3px 5px;
+}
+
+.inbox-body {
+    padding: 20px;
+}
+.btn-compose {
+    background: none repeat scroll 0 0 #ff6c60;
+    color: #fff;
+    padding: 12px 0;
+    margin: 0 10%;
+    text-align: center;
+    width: 80%;
+    font-weight: bolder;
+    text-align: center;
+}
+.btn-compose:hover {
+    background: none repeat scroll 0 0 #f5675c;
+    color: #fff;
+}
+ul.inbox-nav {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.inbox-divider {
+    border-bottom: 1px solid #d5d8df;
+}
+ul.inbox-nav li {
+    display: inline-block;
+    line-height: 45px;
+    width: 100%;
+}
+ul.inbox-nav li a {
+    color: #6a6a6a;
+    display: inline-block;
+    line-height: 45px;
+    padding: 0 20px;
+    width: 100%;
+}
+ul.inbox-nav li a:hover, ul.inbox-nav li.active a, ul.inbox-nav li a:focus {
+    background: none repeat scroll 0 0 #d5d7de;
+    color: #6a6a6a;
+}
+ul.inbox-nav li a i {
+    color: #6a6a6a;
+    font-size: 16px;
+    padding-right: 10px;
+}
+ul.inbox-nav li a span.label {
+    margin-top: 13px;
+}
+ul.labels-info li h4 {
+    color: #5c5c5e;
+    font-size: 13px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    text-transform: uppercase;
+}
+ul.labels-info li {
+    margin: 0;
+}
+ul.labels-info li a {
+    border-radius: 0;
+    color: #6a6a6a;
+}
+ul.labels-info li a:hover, ul.labels-info li a:focus {
+    background: none repeat scroll 0 0 #d5d7de;
+    color: #6a6a6a;
+}
+ul.labels-info li a i {
+    padding-right: 10px;
+}
+.nav.nav-pills.nav-stacked.labels-info p {
+    color: #9d9f9e;
+    font-size: 11px;
+    margin-bottom: 0;
+    padding: 0 22px;
+}
+.inbox-head {
+    background: none repeat scroll 0 0 #15df72;
+    border-radius: 0 4px 0 0;
+    color: #fff;
+    min-height: 80px;
+    padding: 20px;
+}
+.inbox-head h3 {
+    display: inline-block;
+    font-weight: 300;
+    margin: 0;
+    padding-top: 6px;
+}
+.inbox-head .sr-input {
+    border: medium none;
+    border-radius: 4px 0 0 4px;
+    box-shadow: none;
+    color: #8a8a8a;
+    float: left;
+    height: 40px;
+    padding: 0 10px;
+}
+.inbox-head .sr-btn {
+    background: none repeat scroll 0 0 #00a6b2;
+    border: medium none;
+    border-radius: 0 4px 4px 0;
+    color: #fff;
+    height: 40px;
+    padding: 0 20px;
+}
+.table-inbox {
+    border: 1px solid #d3d3d3;
+    margin-bottom: 0;
+}
+.table-inbox tr td {
+    padding: 12px !important;
+}
+.table-inbox tr td:hover {
+    cursor: pointer;
+}
+.table-inbox tr td .fa-star.inbox-started, .table-inbox tr td .fa-star:hover {
+    color: #f78a09;
+}
+.table-inbox tr td .fa-star {
+    color: #d5d5d5;
+}
+.table-inbox tr.unread td {
+    background: none repeat scroll 0 0 #f7f7f7;
+    font-weight: 600;
+}
+ul.inbox-pagination {
+    float: right;
+}
+ul.inbox-pagination li {
+    float: left;
+}
+.mail-option {
+    display: inline-block;
+    margin-bottom: 10px;
+    width: 100%;
+}
+.mail-option .chk-all, .mail-option .btn-group {
+    margin-right: 5px;
+}
+.mail-option .chk-all, .mail-option .btn-group a.btn {
+    background: none repeat scroll 0 0 #fcfcfc;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px !important;
+    color: #afafaf;
+    display: inline-block;
+    padding: 5px 10px;
+}
+.inbox-pagination a.np-btn {
+    background: none repeat scroll 0 0 #fcfcfc;
+    border: 1px solid #e7e7e7;
+    border-radius: 3px !important;
+    color: #afafaf;
+    display: inline-block;
+    padding: 5px 15px;
+}
+.mail-option .chk-all input[type="checkbox"] {
+    margin-top: 0;
+}
+.mail-option .btn-group a.all {
+    border: medium none;
+    padding: 0;
+}
+.inbox-pagination a.np-btn {
+    margin-left: 5px;
+}
+.inbox-pagination li span {
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 7px;
+}
+
+
+
+/***********************************
+IT's Free Tab
+************************************/
+#f1_container {
+  position: relative;
+  margin: 10px auto;
+  width: 400px;
+  height: 250px;
+  z-index: 1;
+}
+#f1_container {
+  perspective: 1000;
+}
+#f1_card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 1.0s linear;
+}
+#f1_container:hover #f1_card {
+  transform: rotateY(180deg);
+  box-shadow: -5px 5px 5px #aaa;
+}
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.face.back {
+  display: block;
+  transform: rotateY(180deg);
+  box-sizing: border-box;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  background-color: grey;
+}
+
+
 /***********************************
 Navigation bar
 ************************************/
@@ -124,7 +421,7 @@ Navigation bar
     color: #5FCF80;
 }
 .navbar-default {
-    background-color: #ffffff;
+    background-color: #fff;
 }
 .course-text{
     padding: 84px;
@@ -188,12 +485,12 @@ Banner
 .banner{
 	background: url('../img/bg-banner.jpg') no-repeat center top;
     background-size: cover;
-	min-height: 580px;
+	min-height: 517px;
     position: relative;
 }
 .bg-color{
 	background-color: RGBA(12, 11, 11, 0.82);
-	min-height: 580px;
+	min-height: 517px;
 }
 .text-dec{
 	font-size: 24px;
@@ -626,7 +923,7 @@ Contact Us
 Footer
 ************************************/
 .footer {   
-    background: #111;
+    background: #000;
     color: #ccc;
 }
 .footer a {
@@ -816,4 +1113,137 @@ Responsive media queries
     .navbar-default .navbar-nav > li > a{
         text-align: center;
     }
+}
+
+.blue{
+    color:#0080ff;
+}
+.green{
+    color: lightgreen;
+}
+.red{
+    color: orange;
+}
+.yell{
+    color: #ff4c4c;
+}
+
+
+
+.heading-title {
+        margin-top: 30px;
+    margin-bottom: 30px;
+}
+.text-center {
+    text-align: center;
+}
+.heading-title h3 {
+    margin-bottom: 0;
+    letter-spacing: 2px;
+    font-weight: bolder;
+}
+.p-top-30 {
+    padding-top: 30px;
+}
+.half-txt {
+    width: 60%;
+    margin: 0 auto;
+    display: inline-block;
+    line-height: 25px;
+    color: #7e7e7e;
+}
+.text-uppercase {
+    text-transform: uppercase;
+}
+
+.team-member, .team-member .team-img {
+    position: relative;
+}
+.team-member {
+    overflow: hidden;
+}
+.team-member, .team-member .team-img {
+    position: relative;
+}
+
+.team-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: 0;
+    border: 20px solid rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.90);
+    opacity: 0;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+.team-member:hover .team-hover .desk {
+    top: 35%;
+}
+.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
+    opacity: 1;
+}
+.team-hover .desk {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    opacity: 0;
+    -webkit-transform: translateY(-55%);
+    -ms-transform: translateY(-55%);
+    transform: translateY(-55%);
+    -webkit-transition: all 0.3s 0.2s;
+    transition: all 0.3s 0.2s;
+    padding: 0 20px;
+}
+.desk, .desk h4, .team-hover .s-link a {
+    text-align: center;
+    color: #222;
+}
+.team-member:hover .team-hover .s-link {
+    bottom: 10%;
+}
+.team-member:hover .team-hover, .team-member:hover .team-hover .desk, .team-member:hover .team-hover .s-link {
+    opacity: 1;
+}
+.team-hover .s-link {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    opacity: 0;
+    text-align: center;
+    -webkit-transform: translateY(45%);
+    -ms-transform: translateY(45%);
+    transform: translateY(45%);
+    -webkit-transition: all 0.3s 0.2s;
+    transition: all 0.3s 0.2s;
+    font-size: 35px;
+}
+.desk, .desk h4, .team-hover .s-link a {
+    text-align: center;
+    color: #222;
+}
+.team-member .s-link a {
+    margin: 0 10px;
+    color: #333;
+    font-size: 16px;
+}
+.team-title {
+    position: static;
+    padding: 20px 0;
+    display: inline-block;
+    letter-spacing: 2px;
+    width: 100%;
+}
+.team-title h5 {
+    margin-bottom: 0px;
+    display: block;
+    text-transform: uppercase;
+}
+.team-title span {
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #a5a5a5;
+    letter-spacing: 1px;
 }

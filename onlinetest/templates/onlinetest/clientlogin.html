@@ -1,26 +1,42 @@
 {% extends "onlinetest/header.html" %} {% block content %}
-<br>
-<br>
-<br>
+<br><br>
 <div class="container">
-    <div class="row">
-        <div class="col-md-4">
-            <center>
-                <h3>Client Sign IN</h3>
-            </center><br>
-            <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:clientloginVal' %}">
-                {% csrf_token %}
+    <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:clientloginVal' %}">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-12">
                 <center>
-                    <input type="text" class="form-control input-lg" name="email" autofocus placeholder="Email" required>
-                    <br>
-                    <input type="password" class="form-control input-lg" name="pwd" placeholder="Password" required>
+                    <h3>Login to your Account</h3><br>
                 </center>
-                <br>
-                <button class="abcbut" type="submit">Login</button>
-                <center>or
-                    <a href="/clientregister" class="abcbut">Signup</a></center>
-            </form>
+            </div>
         </div>
-    </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" class="form-control input-lg" name="email" autofocus placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" class="form-control input-lg" name="pwd" placeholder="Password" required>
+                </div>
+            </div>
+            <div class="col-md-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <center>
+                        <button class="btn btn-primary" type="submit"><b style="font-size: larger">Log In</b></button>&nbsp;
+                        <b>or</b>&nbsp;
+                        <a href="/clientregister" class="btn btn-warning" type="submit"><b style="font-size: larger">Sign Up</b></a>
+                    </center>
+                </div>
+            </div>
+        </div>
+    </form>
 </div>
-<br>{% endblock %}
+{% endblock %}

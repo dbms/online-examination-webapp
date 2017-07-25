@@ -1,10 +1,10 @@
-<!doctype html> {% load static %}
+<!doctype html>
 <html class="no-js" lang="en">
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>
+    <title> Your Test
     </title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1"> {% load staticfiles %}
@@ -32,22 +32,23 @@
 
 </head>
 
-<body style="background: #f2f2f2;margin-top: 30px;">
-    <div class="container" style="background: #fff;padding: 2em;border-radius:5px">
+<body style="background: #00a8b3;padding-top: 60px">
+    
+    <div class="container" style="background: #fff;padding: 2em;border-radius:5px; border: 5px solid black">
         <div class="container">
             <div class="row">
                 <div class="col-md-5">
-                    <button type="button" class="btn btn-default"><b>Welcome - {{ user_id.name}}</b></button>
+                    <button type="button" class="btn btn-success"><b style="text-transform: uppercase">WELCOME -  {{ user_id.name}}</b></button>
                 </div>
                 <div class="col-md-5">
                     <form method="POST" id="formid" action="{% url 'onlinetest:paper_submit' %}">
                         {% csrf_token %}
                         <input type="text" value="0" id="finalmarks" name="totalmarks" hidden>
-                        <button class="btn btn-danger" type="submit" onclick="submitTest()" style="font-weight: bolder">Submit Test</button>
                     </form>
+                    <button class="btn btn-danger" type="button" onclick="submitTest()" value="Submit Test" style="font-weight: bolder">Submit Test</button>
                 </div>
                 <div class="col-md-2">
-                    <div id="time" class="btn btn-default" style="font-weight: bolder">
+                    <div id="time" class="btn btn-success" style="font-weight: bolder">
                     </div>
                 </div>
             </div>
@@ -55,14 +56,14 @@
         <br>
         <br>
         <div class="container">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row" style="padding-top: 5px">
+                <div class="col-md-12">
                     <ul class="list-group">
                         {% for que in ques %}
-                        <li class="list-group-item">
+                        <li>
                             <div class="container">
                                 <div class="row">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <button type="button" class="btn btn-primary"><b>Question - {{forloop.counter}}</b></button>
                                         <br>
                                         <br>
@@ -94,6 +95,7 @@
                                             <div>
                                                 <input type="radio" value="{{que.answer}}" id="{{forloop.counter}}ANSWER" hidden>
                                                 <input type="radio" value="{{timer.testduration}}" id="testduration1" hidden>
+                                                <input type="radio" value="{{noOfQuestions}}" id="noOfQuestions" hidden>
                                                 <!--name="option{{forloop.counter}}" - for radio button grouping-->
                                             </div>
                                         </div>
@@ -109,10 +111,6 @@
                 </div>
             </div>
         </div>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
         <script>
             // Timer begins
             function startTimer(duration, display) {
@@ -139,7 +137,9 @@
             // Marks calculation begins
             function submitTest() {
                 var marks = 0;
-                for (var i = 1; i < 10; i++) {
+                var noOfQuestions = document.getElementById('noOfQuestions').value;
+                var x = Number(noOfQuestions);
+                for (var i = 1; i < x + 1; i++) {
                     if (document.getElementById(i + "A").checked) {
                         if (document.getElementById(i + "A").value == document.getElementById(i + "ANSWER").value)
                             marks++;
@@ -160,11 +160,14 @@
                 }
                 // alert("Your Score - " + marks);
                 document.getElementById('finalmarks').value = marks;
-                alert(marks);
+                alert("Your Score is - " + marks);
                 $("#formid").submit();
             }
         // Marks calculations Ends
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
     </div>
 </body>
 

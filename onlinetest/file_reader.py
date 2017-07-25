@@ -49,7 +49,7 @@ def read_xl(filename):
     data = {}
     for i in wb.worksheets:
         #all rows and columns
-        row_count = i.max_row
+        row_count = i.max_row +1 
         col_count = i.max_column
         print(row_count, col_count)
         for row in range(2,row_count):

@@ -32,61 +32,99 @@
     </style>
 </head>
 
-<body style="background: #f2f2f2">
-    <br>
-    <div class="container" style="background: #fff;padding: 10px">
-        <div class="row">
-            <div class="col-md-4">
-                <a href="#" class="btn btn-default"><b>WELCOME - {{ client_id.email}}</b></a>
+<body style="height: 100%">
+    <div style="min-height: 87.6%">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">ONLINE<span> EXAMINATION</span></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/home">CLIENT PROFILE</a></li>
+                        <li><a href="/clientlogout">LOGOUT</a></li>
+                        <li class="btn-trial"><a href="/clientlogout">IT'S FREE</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="col-md-2">
-                <a href="../home" class="btn btn-default"><b>HOME</b></a>
-            </div>
-            <div class="col-md-6" style="text-align: right">
-                <a href="../clientlogout" class="btn btn-primary" style="float: center"><b>LOGOUT</b></a>
-            </div>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-sm-12 col-md-4">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-sm-12 col-md-12">
-                            <h3>Fill Test Details</h3><br>
-                            <form method="post" enctype="multipart/form-data" action="../simple_upload/">
-                                {% csrf_token %}
-                                <input type="text" class="form-control input-lg" name="testtitle" autofocus placeholder="Test Title" required>
-                                <br>
-                                <input type="text" class="form-control input-lg" name="testduration" autofocus placeholder="Test Duration [Minutes]" required>
-                                <br>
-                                <a href="{% static 'onlinetest/docs/quesformat.xlsx' %}" class="btn btn-primary"> <b> Download this Excel File to fill Questions </b> </h4></a>
-                                <br>
-                                <h4><b>Upload the EXCEL file here </b></h4>
-                                <b>
+        </nav>
+        <br>
+        <div class="container" style="background: #fff;padding: 10px">
+            <div class="row">
+                <div class="col-sm-12 col-md-4">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12">
+                                <h3><b>Fill Test Details</b></h3><br>
+                                <form method="post" enctype="multipart/form-data" action="../simple_upload/">
+                                    {% csrf_token %}
+                                    <input type="text" class="form-control input-lg" name="testtitle" autofocus placeholder="Test Category" required>
+                                    <br>
+                                    <input type="text" class="form-control input-lg" name="testduration" autofocus placeholder="Test Duration [Minutes]" required>
+                                    <br>
+                                    <a href="{% static 'onlinetest/docs/quesformat.xlsx' %}" class="btn btn-primary"> <b> Download Sample File</b></a>
+                                    <br><br>
+                                    <h3>Upload EXCEL File </h3>
+                                    <b>
                                   <input type="file" name="myfile"><br>
-                                    <button type="submit" class="btn btn-primary"><b> Submit Test </b></button>
-                                </b>
-                            </form>
-                            {% if uploaded_file_url %}
-                            <br>
-                            <b>Test ID : {{ uploaded_file_url }}</b> 
-                            {% endif %}
+                                    <button type="submit" class="btn btn-success"><b> Submit Test </b></button>
+                                    </b>
+                                </form>
+                                {% if uploaded_file_url %}
+                                <b>Test ID : {{ uploaded_file_url }}</b> {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-12 col-md-8">
-                <h3>Test Details</h3>
-                <p>Please provide a name for the test being conducted and specify the total marks, number of questions and time
-                    limit for the same. </p>
-                <h3>Test File</h3>
-                <p>Please upload the required excel file containing the list of questions along with options and the correct
-                    answer.
-                    <br> Please ensure that excel file is according to the format specified by the sample file.
-                </p>
+                <div class="col-sm-12 col-md-8">
+                    <div class="panel panel-default" style="margin-top: 40px">
+                        <div style="background-color: #00a8b3; color: white; padding: 5px;">
+                            <h4 style="padding-left: 10px"><b> Test Details Specifications </b></h4>
+                        </div>
+                        <div class="row" style="margin: 5px; padding: 10px">
+                            <p><span class="glyphicon glyphicon-star"></span> Provide a suitable category for the test being
+                                conducted such as Aptitude, GK etc.<br>
+                                <span class="glyphicon glyphicon-star"></span> Specify the duration of the test in minutes
+                                format.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 col-md-8">
+                    <div class="panel panel-default" style="margin-top: 10px">
+                        <div style="background-color: #15df72; color: black; padding: 5px;">
+                            <h4 style="padding-left: 10px"><b> Test File Specifications </b></h4>
+                        </div>
+                        <div class="row" style="margin: 5px; padding: 10px">
+                            <p><span class="glyphicon glyphicon-star"></span> Test file should contain the list of questions
+                                along with options and correct answer.<br>
+                                <span class="glyphicon glyphicon-star"></span> Ensure that the uploaded excel file is according
+                                to the format specified by the sample file.</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
+
+    <center>
+        <footer id="footer" class="footer" style="padding: 17px 0">
+            Summer Internship Project - 2017
+            <div class="credits">
+                Designed and Developed for <a href="/"><b> TCS Remote Internship</b></a><br>
+            </div>
+        </footer>
+    </center>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js" Async></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" Async integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>

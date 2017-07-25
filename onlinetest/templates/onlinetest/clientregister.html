@@ -1,27 +1,28 @@
 {% extends "onlinetest/header.html" %} {% block content %}
 <br>
-<br>
-<br>
 <div class="container">
     <form class="form col-md-12 center-block" method="POST" action="{% url 'onlinetest:adminhome' %}">
         {% csrf_token %}
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-12" style="text-align: center">
                 <h3>Register for conducting a Test</h3><br>
             </div>
         </div>
         <div class="row">
             <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
+                <div class="form-group">
+                    <input type="text" autofocus class="form-control input-lg" name="name" placeholder="Name" required />
+                </div>
                 <div class="form-group">
                     <input type="email" autofocus class="form-control input-lg" name="email" placeholder="Email-ID" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                         required />
-
                 </div>
                 <div class="form-group">
                     <input type="text" class="form-control input-lg" pattern="[789][0-9]{9}" maxlength="11" name="contactNumber" placeholder="Contact Number"
                         required>
                 </div>
-
                 <div class="form-group">
                     <input type="password" id="password" class="form-control input-lg" name="pwd" placeholder="Create a Password" required>
                 </div>
@@ -30,20 +31,26 @@
                         required>
                 </div>
             </div>
-            <div class="col-md-8">
-
+            <div class="col-md-4">
             </div>
         </div>
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-4">
+            </div>
+            <div class="col-md-4">
                 <div class="form-group">
-                    <button class="btn btn-info btn-lg btn-block">Sign Up</button>
+                    <center>
+                        <button class="btn btn-primary"><b style="font-size: larger">Sign Up</b></button>
+                        <b>or</b>&nbsp;
+                        <a href="/clientlogin" class="btn btn-warning" type="submit"><b style="font-size: larger">Sign In</b></a>
+                    </center>
                 </div>
+            </div>
+            <div class="col-md-4">
             </div>
         </div>
     </form>
 </div>
-<br>
 <br>
 <script language='javascript' type='text/javascript'>
     function check(input) {
